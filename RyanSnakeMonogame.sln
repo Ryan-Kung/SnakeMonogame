@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RyanSnakeMonogame", "RyanSnakeMonogame\RyanSnakeMonogame.csproj", "{4889D5BA-5ED7-4F73-9734-65F3E3E17DE2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4889D5BA-5ED7-4F73-9734-65F3E3E17DE2}.Debug|x86.ActiveCfg = Debug|x86
+		{4889D5BA-5ED7-4F73-9734-65F3E3E17DE2}.Debug|x86.Build.0 = Debug|x86
+		{4889D5BA-5ED7-4F73-9734-65F3E3E17DE2}.Release|x86.ActiveCfg = Release|x86
+		{4889D5BA-5ED7-4F73-9734-65F3E3E17DE2}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6F0FAD37-B605-4134-BA69-F0ADC4550EB5}
+	EndGlobalSection
+EndGlobal
