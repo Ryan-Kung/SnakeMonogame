@@ -16,6 +16,9 @@ namespace RyanSnakeMonogame
         SpriteBatch spriteBatch;
         List<Snake> Pieces = new List<Snake>();
         Snake snake1;
+        Food food1;
+        TimeSpan elaspedTime;
+        TimeSpan waitTime = new TimeSpan(0, 0, 0, 0, 50);
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -43,7 +46,9 @@ namespace RyanSnakeMonogame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            snake1 = new Snake( new Vector2(30, 30), Content.Load<Texture2D>("snakepiece"), Color.White);
+            snake1 = new Snake(new Vector2(30, 30), Content.Load<Texture2D>("snakepiece"), Color.White);
+            food1 = new Food(new Vector2(255, 255), Content.Load<Texture2D>("snakefood"), Color.White);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -67,8 +72,20 @@ namespace RyanSnakeMonogame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             KeyboardState ks = Keyboard.GetState();
-            snake1.Move(gameTime, ks, GraphicsDevice.Viewport.Width);
+            snake1.HeadMove(ks);
+            elaspedTime += gameTime.ElapsedGameTime;
+            if (elaspedTime > waitTime)
+            {
+                elaspedTime = TimeSpan.Zero;
+                snake1.Move();
 
+            }
+           
+            if (snake1.hitbox.Intersects(food1.hitbox))
+            {
+                Pieces.Add(new Snake(new Vector2(snake1.position.X - 5, snake1.position.Y), Content.Load<Texture2D>("snakepiece"), Color.White));
+
+            }
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -83,6 +100,7 @@ namespace RyanSnakeMonogame
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
             snake1.Draw(spriteBatch);
+            food1.Draw(spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 

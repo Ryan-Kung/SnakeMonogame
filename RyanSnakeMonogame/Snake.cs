@@ -9,14 +9,24 @@ using System.Threading.Tasks;
 
 namespace RyanSnakeMonogame
 {
+    enum Direction
+    {
+        None,
+        Up,
+        Down,
+        Left,
+        Right
+    }
+
     public class Snake
     {
-        Vector2 position;
+        public Vector2 position;
         Texture2D texture;
         Color tint;
         public int xSpeed;
         public int ySpeed;
         public Rectangle hitbox;
+        Direction direction = Direction.None;
 
         public Snake(Vector2 position, Texture2D texture, Color tint, int xSpeed = 2, int ySpeed = 2)
         {
@@ -32,24 +42,47 @@ namespace RyanSnakeMonogame
         {
             spriteBatch.Draw(texture, position, tint);
         }
-        public void Move(GameTime gameTime, KeyboardState ks, int Screenwidth)
+        public void HeadMove(KeyboardState ks)
         {
-            if(ks.IsKeyDown(Keys.Left))
+           if(ks.IsKeyDown(Keys.Right))
             {
-                position.X -= xSpeed;
+                direction = Direction.Right;
             }
-            if(ks.IsKeyDown(Keys.Right))
+            if (ks.IsKeyDown(Keys.Left))
             {
-                position.X += xSpeed;
+                direction = Direction.Left;
+
             }
-            if(ks.IsKeyDown(Keys.Up))
+            
+            if (ks.IsKeyDown(Keys.Up))
             {
-                position.Y -= ySpeed;
+                direction = Direction.Up;
+               
             }
-            if(ks.IsKeyDown(Keys.Down))
+            if (ks.IsKeyDown(Keys.Down))
             {
-                position.Y += ySpeed;
+                direction = Direction.Down;
             }
-                }
+        }
+        public void Move()
+        {
+            if(direction == Direction.Up)
+            {
+                position.Y -= texture.Height;
+            }
+            if(direction == Direction.Down)
+            {
+                position.Y += texture.Height;
+            }
+            if(direction == Direction.Left)
+            {
+                position.X -= texture.Width;
+            }
+            if(direction == Direction.Right)
+            {
+                position.X += texture.Width;
+            }
+        }
+        
     }
 }
